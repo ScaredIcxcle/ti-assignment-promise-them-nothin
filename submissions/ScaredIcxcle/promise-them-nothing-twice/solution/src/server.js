@@ -17,7 +17,7 @@ function askCoordinator(customerId, nowMin) {
     // nosemgrep: problem-based-packs.insecure-transport.js-node.using-http-server.using-http-server
     // nosemgrep: problem-based-packs.insecure-transport.js-node.http-request.http-request
     // Localhost-only call to the coordinator process — no external network hop.
-    const req = http.request(
+    const req = http.request(// nosemgrep: problem-based-packs.insecure-transport.js-node.using-http-server.using-http-server,problem-based-packs.insecure-transport.js-node.http-request.http-request
       {
         hostname: 'localhost',
         port: COORDINATOR_PORT,
@@ -44,7 +44,7 @@ function askCoordinator(customerId, nowMin) {
 }
 // nosemgrep: problem-based-packs.insecure-transport.js-node.using-http-server.using-http-server
 // This app node only binds to localhost for the harness demo — no external exposure.
-const server = http.createServer(async (req, res) => {
+const server = http.createServer(async (req, res) => { // nosemgrep: problem-based-packs.insecure-transport.js-node.using-http-server.using-http-server
   if (req.url !== '/api/v1/ping') {
     res.writeHead(404);
     res.end();
