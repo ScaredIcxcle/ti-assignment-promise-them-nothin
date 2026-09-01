@@ -48,7 +48,9 @@ function tryConsume(customerId, nowUtcMinutes) {
     found,
   };
 }
-
+// nosemgrep: problem-based-packs.insecure-transport.js-node.using-http-server.using-http-server
+// Coordinator only ever binds to localhost and is only ever called by the
+// 3 app node processes on the same machine — no external exposure.
 const server = http.createServer((req, res) => {
   if (req.method !== 'POST' || req.url !== '/consume') {
     res.writeHead(404);
