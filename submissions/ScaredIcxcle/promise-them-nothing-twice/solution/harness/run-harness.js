@@ -19,6 +19,10 @@ function spawnProc(script, env, label) {
 
 function fireRequest(port, customerId, extraHeaders) {
   return new Promise((resolve) => {
+    // nosemgrep: problem-based-packs.insecure-transport.js-node.using-http-server.using-http-server
+    // nosemgrep: problem-based-packs.insecure-transport.js-node.http-request.http-request
+    // Localhost-only harness traffic between processes on 127.0.0.1 for a
+    // take-home demo — no external network exposure, TLS adds nothing here.
     const req = http.request(
       {
         hostname: 'localhost',
